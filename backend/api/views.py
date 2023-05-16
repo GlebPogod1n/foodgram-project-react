@@ -17,10 +17,10 @@ from .mixins import AddDeleteViewMixin, ListCreateRetriveViewSet
 from .paginations import CustomPaginator
 from .permissions import IsAuthorOrReadOnly
 from .serializers import (IngredientSerializer, RecipeCreateSerializer,
-                          RecipeListSerializer,
-                          SetPasswordSerializer, SubscribeAuthorSerializer,
-                          SubscriptionsSerializer, TagSerializer,
-                          UserCreateSerializer, UserListSerializer)
+                          RecipeListSerializer, SetPasswordSerializer,
+                          SubscribeAuthorSerializer, SubscriptionsSerializer,
+                          TagSerializer, UserCreateSerializer,
+                          UserListSerializer)
 
 
 class UserViewSet(ListCreateRetriveViewSet):
