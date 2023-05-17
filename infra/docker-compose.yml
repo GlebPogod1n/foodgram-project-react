@@ -20,6 +20,7 @@ services:
       - ./.env
 
   frontend:
+    container_name: frontend
     image: pogodingleb/frontend:latest
     volumes:
       - ./frontend/:/app/result_build/
