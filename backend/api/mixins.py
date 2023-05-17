@@ -29,9 +29,7 @@ class AddDeleteViewMixin:
                 model_name.objects.create(user=request.user, recipe=recipe)
                 return Response(serializer.data,
                                 status=status.HTTP_201_CREATED)
-            return Response({'errors': 'Рецепт уже в избранном.'},
-                            status=status.HTTP_400_BAD_REQUEST)
-        if get_object_or_404(model_name, user=request.user,
-                             recipe=recipe).delete():
-            return Response({'detail': 'Рецепт успешно удален из избранного.'},
-                            status=status.HTTP_204_NO_CONTENT)
+        get_object_or_404(model_name, user=request.user,
+                          recipe=recipe).delete()
+        return Response({'detail': 'Рецепт успешно удален из избранного.'},
+                        status=status.HTTP_204_NO_CONTENT)

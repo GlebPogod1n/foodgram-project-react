@@ -74,11 +74,10 @@ class UserViewSet(ListCreateRetriveViewSet):
             Subscribe.objects.create(user=request.user, author=author)
             return Response(serializer.data,
                             status=status.HTTP_201_CREATED)
-
-        if get_object_or_404(Subscribe, user=request.user,
-                             author=author).delete():
-            return Response({'detail': 'Успешная отписка'},
-                            status=status.HTTP_204_NO_CONTENT)
+        get_object_or_404(Subscribe, user=request.user,
+                          author=author).delete()
+        return Response({'detail': 'Успешная отписка'},
+                        status=status.HTTP_204_NO_CONTENT)
 
 
 class IngredientViewSet(mixins.ListModelMixin,
