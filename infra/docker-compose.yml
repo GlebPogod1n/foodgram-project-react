@@ -9,7 +9,7 @@ services:
       - db_data:/var/lib/postgresql/data/
 
   backend:
-    image: pogodingleb/backend:1
+    image: pogodingleb/backend:latest
     restart: always
     volumes:
       - static_value:/app/static/
@@ -20,7 +20,7 @@ services:
       - ./.env
 
   frontend:
-    image: pogodingleb/frontend:1
+    image: pogodingleb/frontend:latest
     volumes:
       - ../frontend/:/app/result_build/
     depends_on:
