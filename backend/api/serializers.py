@@ -72,7 +72,6 @@ class SetPasswordSerializer(PasswordSerializer):
 
 
 class RecipeSerializer(serializers.ModelSerializer):
-    """Список рецептов без ингридиентов."""
     image = Base64ImageField(read_only=True)
     name = serializers.ReadOnlyField()
     cooking_time = serializers.ReadOnlyField()
@@ -137,7 +136,6 @@ class RecipeListSerializer(serializers.ModelSerializer):
 
 
 class IngredientAmountCreateSerializer(serializers.ModelSerializer):
-    """Ингредиент и количество для создания рецепта."""
     id = serializers.IntegerField()
     amount = serializers.IntegerField()
 
@@ -148,7 +146,6 @@ class IngredientAmountCreateSerializer(serializers.ModelSerializer):
 
 
 class IngredientSerializer(serializers.ModelSerializer):
-    """[GET] Список ингредиентов."""
     class Meta:
         model = Ingredient
         fields = '__all__'
@@ -214,7 +211,6 @@ class SubscribeAuthorSerializer(serializers.ModelSerializer):
 
 
 class SubscriptionsSerializer(serializers.ModelSerializer):
-    """[GET] Список авторов на которых подписан пользователь."""
     is_subscribed = serializers.SerializerMethodField()
     recipes = serializers.SerializerMethodField()
     recipes_count = serializers.SerializerMethodField()
@@ -247,7 +243,6 @@ class SubscriptionsSerializer(serializers.ModelSerializer):
 
 
 class RecipeCreateSerializer(serializers.ModelSerializer):
-    """[POST, PATCH, DELETE] Создание, изменение и удаление рецепта."""
     tags = serializers.PrimaryKeyRelatedField(many=True,
                                               queryset=Tag.objects.all())
     author = UserListSerializer(read_only=True)
