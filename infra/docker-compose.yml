@@ -21,7 +21,7 @@ services:
 
   frontend:
     container_name: frontend
-    image: pogodingleb/frontend:latest
+    image: pogodingleb/frontend:1
     volumes:
       - ./frontend/:/app/result_build/
     depends_on:
