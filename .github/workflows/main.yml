@@ -79,7 +79,6 @@ jobs:
         key: ${{ secrets.SSH_KEY }}
         passphrase: ${{ secrets.PASSPHRASE }}
         script: |
-          sudo docker image prune -f && sudo docker container prune -f 
           sudo docker pull ${{ secrets.DOCKER_USERNAME }}/backend:latest
           sudo docker-compose stop
           sudo docker ps -a | grep Exit | cut -d ' ' -f 1 | xargs sudo docker rm
