@@ -13,6 +13,7 @@ services:
       - db_data:/var/lib/postgresql/data/
 
   backend:
+    platform: linux/amd64
     image: pogodingleb/backend:latest
     restart: always
     volumes:
@@ -24,6 +25,7 @@ services:
       - ./.env
 
   frontend:
+    platform: linux/amd64
     container_name: frontend
     image: pogodingleb/frontend:1
     volumes:
