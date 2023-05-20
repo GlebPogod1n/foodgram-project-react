@@ -10,5 +10,4 @@ RUN pip3 install -r requirements.txt --no-cache-dir
 
 COPY ./ ./
 
-RUN chmod +x run_app.sh
-ENTRYPOINT ["/app/run_app.sh"]
+CMD ["gunicorn", "foodgram.wsgi:application", "--bind", "0:8000" ]
