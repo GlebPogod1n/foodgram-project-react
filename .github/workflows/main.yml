@@ -1,4 +1,5 @@
 name: Django foodgram workflow
+
 on: [push]
 
 jobs:
