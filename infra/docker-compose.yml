@@ -2,7 +2,6 @@ version: '3.8'
 
 services:
   db:
-    platform: linux/amd64
     image: postgres:14-alpine
     environment:
       - POSTGRES_PASSWORD=postgres
@@ -14,8 +13,8 @@ services:
       - db_data:/var/lib/postgresql/data/
 
   backend:
-    platform: linux/amd64
     image: pogodingleb/backend:latest
+    platform: linux/amd64
     restart: always
     volumes:
       - static_value:/app/static/
@@ -26,16 +25,15 @@ services:
       - ./.env
 
   frontend:
-    platform: linux/amd64
     container_name: frontend
-    image: pogodingleb/frontend:1
+    image: pogodingleb/frontend:latest
+    platform: linux/amd64
     volumes:
       - ./frontend/:/app/result_build/
     depends_on:
       - backend
 
   nginx:
-    platform: linux/amd64
     image: nginx:1.19.3
     restart: always
     ports:
