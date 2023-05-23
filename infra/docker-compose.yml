@@ -1,14 +1,12 @@
 version: '3.8'
 services:
   db:
-    image: postgres:14-alpine
-    environment:
-      POSTGRES_PASSWORD: postgres
-    restart: always
-    env_file:
-      - ./.env
+    image: postgres:13.0-alpine
+    platform: linux/amd64
     volumes:
       - db_data:/var/lib/postgresql/data/
+    env_file:
+      - ./.env
 
   backend:
     image: pogodingleb/backend:latest
@@ -23,11 +21,11 @@ services:
       - ./.env
 
   frontend:
-    container_name: frontend
-    image: pogodingleb/frontend:latest
-    platform: linux/amd64
+    build:
+      context: ../frontend
+      dockerfile: Dockerfile
     volumes:
-      - ./frontend/:/app/result_build/
+      - ../frontend/:/app/result_build/
     depends_on:
       - backend
 
@@ -43,6 +41,7 @@ services:
       - static_value:/var/html/static/
       - media_value:/var/html/media/
     depends_on:
+      - backend
       - frontend
 volumes:
   db_data:
