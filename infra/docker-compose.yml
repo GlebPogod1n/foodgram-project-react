@@ -20,7 +20,7 @@ services:
       - ./.env
 
   frontend:
-    image: pogodingleb/frontend:v1
+    image: pogodingleb/frontend:latest
     volumes:
       - ../frontend/:/app/result_build/
     depends_on:
