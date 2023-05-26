@@ -2,12 +2,12 @@ FROM python:3.11-slim
 
 RUN apt update && apt install -y gcc libpq-dev
 
-WORKDIR /app
+WORKDIR /app/backend
 
-COPY requirements.txt ./
+COPY backend/requirements.txt /app
 
-RUN pip3 install -r requirements.txt --no-cache-dir
+RUN pip3 install -r /app/requirements.txt --no-cache-dir
 
-COPY ./ ./
+COPY ../ /app
 
-CMD ["gunicorn", "foodgram.wsgi:application", "--bind", "0:8000" ]
+CMD ["gunicorn", "foodgram.wsgi:application", "--bind", "0:8000"]
