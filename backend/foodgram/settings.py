@@ -9,6 +9,7 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
+CSRF_TRUSTED_ORIGINS = ['158.160.27.148']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
