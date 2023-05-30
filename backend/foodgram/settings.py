@@ -3,13 +3,13 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = str(os.getenv('SECRET_KEY', default='0t-l_rfd)q^6-ca+hj5k#7z$qwk(%^k6+e*lx6vv+f(p^5svc6'))
+SECRET_KEY = str(os.getenv('SECRET_KEY'))
 
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-CSRF_TRUSTED_ORIGINS = ['158.160.27.148']
+CSRF_TRUSTED_ORIGINS = ['http://158.160.27.148']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
