@@ -128,20 +128,16 @@ class RecipeViewSet(viewsets.ModelViewSet, AddDeleteViewMixin):
     @action(detail=False, methods=['get'],
             permission_classes=(IsAuthenticated,))
     def download_shopping_cart(self, request):
-        ingredients = (
-            IngredientAmount.objects
-            .filter(recipe__user=request.user)
-            .values('ingredient')
-            .annotate(total_amount=Sum('amount'))
-            .values_list('ingredient__name', 'total_amount',
-                         'ingredient__measurement_unit')
-        )
+        ingredients = IngredientAmount.objects.filter(
+            recipe__shopping_recipe__user=request.user).values(
+            'ingredient__name', 'ingredient__measurement_unit').order_by(
+            'ingredient__name').annotate(total_amount=Sum('amount'))
         shopping_list = ['Список покупок:\n']
         for ingredient in ingredients:
-            name = ingredient['ingredient__name']
-            unit = ingredient['ingredient__measurement_unit']
-            amount = ingredient['ingredient_amount']
-            shopping_list.append(f'\n{name} - {amount}, {unit}')
+            shopping_list.append(
+                f'{ingredient["ingredient__name"]} - '
+                f'{ingredient["total_amount"]} '
+                f'{ingredient["ingredient__measurement_unit"]}\n')
         file = HttpResponse(shopping_list, content_type='text/plain')
         file['Content-Disposition'] = (f'attachment; filename={FILE_NAME}')
         return file

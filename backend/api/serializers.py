@@ -137,12 +137,10 @@ class RecipeListSerializer(serializers.ModelSerializer):
 
 class IngredientAmountCreateSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField()
-    amount = serializers.IntegerField()
 
     class Meta:
         model = IngredientAmount
         fields = ('id', 'amount')
-        read_only_fields = '__all__',
 
 
 class IngredientSerializer(serializers.ModelSerializer):

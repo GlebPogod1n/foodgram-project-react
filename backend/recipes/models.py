@@ -1,8 +1,7 @@
 from django.core.validators import MinValueValidator
 from django.db.models import (CASCADE, CharField, DateTimeField, ForeignKey,
                               ImageField, IntegerField, ManyToManyField, Model,
-                              PositiveIntegerField, SlugField, TextField,
-                              UniqueConstraint)
+                              SlugField, TextField, UniqueConstraint)
 
 from users.models import User
 
@@ -111,10 +110,9 @@ class IngredientAmount(Model):
         on_delete=CASCADE,
         related_name='ingredient',
     )
-    amount = PositiveIntegerField(
+    amount = IntegerField(
         'Количество',
-        default=1,
-        validators=(MinValueValidator(1, 'Минимум 1'),),
+        validators=[MinValueValidator(1)]
     )
 
     class Meta:
